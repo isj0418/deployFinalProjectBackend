@@ -7,16 +7,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
 public class MemberRequestDto {
+    private String userId;
     private String email;
     private String password;
     private String name;
-    private String contact;
-    private String phoneNumber;
+    private String nickName;
+    private Date birthDate;
     private Role role;
 
     public Member toEntity() {
@@ -24,8 +27,9 @@ public class MemberRequestDto {
                 .email(email)
                 .password(password)
                 .name(name)
-                .contact(contact)
-                .phoneNumber(phoneNumber)
+                .userId(userId)
+                .nickName(nickName)
+                .birthDate(birthDate)
                 .role(role)
                 .build();
     }

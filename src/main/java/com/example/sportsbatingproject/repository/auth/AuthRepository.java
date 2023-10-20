@@ -1,9 +1,9 @@
 package com.example.sportsbatingproject.repository.auth;
 
+import com.example.sportsbatingproject.repository.auth.entity.Auth;
 import com.example.sportsbatingproject.repository.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.example.sportsbatingproject.repository.auth.entity.Auth;
 
 import java.util.Optional;
 

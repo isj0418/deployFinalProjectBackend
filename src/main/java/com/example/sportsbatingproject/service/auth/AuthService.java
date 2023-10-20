@@ -30,10 +30,10 @@ public class AuthService {
     @Transactional
     public AuthResponseDto login(AuthRequestDto requestDto) {
         // CHECK USERNAME AND PASSWORD
-        Member member = this.memberRepository.findByName(requestDto.getName()).orElseThrow(
-                () -> new UsernameNotFoundException("해당 유저를 찾을 수 없습니다. username = " + requestDto.getName()));
+        Member member = this.memberRepository.findByUserId(requestDto.getUserId()).orElseThrow(
+                () -> new UsernameNotFoundException("해당 유저를 찾을 수 없습니다. username = " + requestDto.getUserId()));
         if (!passwordEncoder.matches(requestDto.getPassword(), member.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다. username = " + requestDto.getName());
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다. username = " + requestDto.getUserId());
         }
         // GENERATE ACCESS_TOKEN AND REFRESH_TOKEN
         String accessToken = this.jwtTokenProvider.generateAccessToken(
@@ -64,7 +64,7 @@ public class AuthService {
     @Transactional
     public String signup(MemberRequestDto requestDto) {
         // SAVE USER ENTITY
-        if(memberRepository.findByName(requestDto.getName()).isEmpty()){
+        if(memberRepository.findByUserId(requestDto.getUserId()).isEmpty()){
             requestDto.setRole(Role.ROLE_USER);
             requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
             this.memberRepository.save(requestDto.toEntity());
