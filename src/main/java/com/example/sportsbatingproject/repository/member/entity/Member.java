@@ -4,6 +4,8 @@ import com.example.sportsbatingproject.repository.auth.entity.Auth;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,11 +18,12 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
+    private String userId;
     private String email;
-    private String contact;
     private String password;
     private String name;
-    private String phoneNumber;
+    private String nickName;
+    private Date birthDate;
 
     @Enumerated(EnumType.STRING)
     private Role role;

@@ -21,7 +21,7 @@ public class CustomUserDetails implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority(user.getRole().name()));
     }
 
-    public Long getId(){
+    public Long getIdx(){
         return user.getIdx();
     }
 
@@ -29,13 +29,11 @@ public class CustomUserDetails implements UserDetails {
         return user.getEmail();
     }
 
-    public String getContact(){
-        return user.getContact();
-    }
     @Override
     public String getUsername(){
         return user.getName();
     }
+
     @Override
     public String getPassword(){
         return user.getPassword();
