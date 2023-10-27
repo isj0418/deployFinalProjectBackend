@@ -1,9 +1,6 @@
 package com.example.sportsbatingproject.repository.kleague.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -11,6 +8,7 @@ import lombok.Data;
 @Table(name = "K_league_Team")
 public class KleagueTeamEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long k_Team_Id;
     @Column
     private String k_league_Ranking;

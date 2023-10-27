@@ -1,9 +1,6 @@
 package com.example.sportsbatingproject.repository.article.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +13,7 @@ import java.util.Date;
 @Table(name = "news")
 public class Article  {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   @Column(name = "title")
   private String title;
