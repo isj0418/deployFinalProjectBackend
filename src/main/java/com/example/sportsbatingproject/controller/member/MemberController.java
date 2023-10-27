@@ -3,11 +3,14 @@ package com.example.sportsbatingproject.controller.member;
 import com.example.sportsbatingproject.component.JwtTokenProvider;
 import com.example.sportsbatingproject.controller.member.dto.MemberRequestDto;
 import com.example.sportsbatingproject.controller.member.dto.MemberResponseDto;
+import com.example.sportsbatingproject.repository.member.entity.Member;
 import com.example.sportsbatingproject.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -23,6 +26,11 @@ public class MemberController {
         Long id = this.jwtTokenProvider.getUserIdFromToken(accessToken.substring(7));
         MemberResponseDto memberResponseDto = this.memberService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(memberResponseDto);
+    }
+
+    @GetMapping("/allUser")
+    public List<Member> findAllUser(){
+        return this.memberService.findAll();
     }
 
     /** 회원정보 수정 API */
